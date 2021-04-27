@@ -21,6 +21,8 @@ following changes:
   testing the code.  Since I added a test suite, the hard coded values
   were not of much use.  I also changed the interface to accept a list of
   items as a parameter rather than a hard coded constant.
+  
+* This version has been updated to match what Sandi Metz used in her presentation 'All the Little Things'
 
 You can read
 [the original kata article](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/) for more details.
