@@ -13,11 +13,14 @@ class GildedRose
       @item = Normal.new(name, quality, days_remaining)
       @item.tick
     when 'Aged Brie'
-      aged_brie_tick
+      @item = AgedBrie.new(name, quality, days_remaining)
+      @item.tick
     when 'Sulfuras, Hand of Ragnaros'
-      sulfuras_tick
+      @item = Sulfuras.new(name, quality, days_remaining)
+      @item.tick
     when 'Backstage passes to a TAFKAL80ETC concert'
-      backstage_tick
+      @item = Backstage.new(name, quality, days_remaining)
+      @item.tick
     end
   end
 
@@ -49,25 +52,55 @@ class GildedRose
     end
   end
 
-  def aged_brie_tick
-    @days_remaining -= 1
-    return if @quality >= 50
+  class AgedBrie
+    attr_reader :name, :quality, :days_remaining
 
-    @quality += 1
-    @quality += 1 if @days_remaining <= 0 && @quality < 50
+    def initialize(name, quality, days_remaining)
+      @name = name
+      @quality = quality
+      @days_remaining = days_remaining
+    end
+
+    def tick
+      @days_remaining -= 1
+      return if @quality >= 50
+
+      @quality += 1
+      @quality += 1 if @days_remaining <= 0 && @quality < 50
+    end
   end
 
-  def sulfuras_tick
+  class Sulfuras
+    attr_reader :name, :quality, :days_remaining
+
+    def initialize(name, quality, days_remaining)
+      @name = name
+      @quality = quality
+      @days_remaining = days_remaining
+    end
+
+    def tick
+    end
   end
 
-  def backstage_tick
-    @days_remaining -= 1
+  class Backstage
+    attr_reader :name, :quality, :days_remaining
 
-    return if @quality >= 50
-    return @quality = 0 if @days_remaining < 0
+    def initialize(name, quality, days_remaining)
+      @name = name
+      @quality = quality
+      @days_remaining = days_remaining
+    end
 
-    @quality += 1
-    @quality += 1 if @days_remaining < 10
-    @quality += 1 if @days_remaining < 5
+    def tick
+      @days_remaining -= 1
+
+      return if @quality >= 50
+      return @quality = 0 if @days_remaining < 0
+
+      @quality += 1
+      @quality += 1 if @days_remaining < 10
+      @quality += 1 if @days_remaining < 5
+    end
   end
 end
