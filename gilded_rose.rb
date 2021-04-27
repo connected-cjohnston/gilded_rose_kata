@@ -2,43 +2,38 @@ class GildedRose
   attr_reader :name, :quality, :days_remaining
 
   def initialize(name, quality, days_remaining)
-    @name = name
-    @quality = quality
-    @days_remaining = days_remaining
+    @item = klass_for(name).new(quality, days_remaining)
   end
 
-  def tick
+  def klass_for(name)
     case name
     when 'NORMAL ITEM'
-      @item = Normal.new(name, quality, days_remaining)
-      @item.tick
+      Normal
     when 'Aged Brie'
-      @item = AgedBrie.new(name, quality, days_remaining)
-      @item.tick
+      AgedBrie
     when 'Sulfuras, Hand of Ragnaros'
-      @item = Sulfuras.new(name, quality, days_remaining)
-      @item.tick
+      Sulfuras
     when 'Backstage passes to a TAFKAL80ETC concert'
-      @item = Backstage.new(name, quality, days_remaining)
-      @item.tick
+      Backstage
     end
   end
 
+  def tick
+    @item.tick
+  end
+
   def quality
-    return @item.quality if @item
-    @quality
+    @item.quality
   end
 
   def days_remaining
-    return @item.days_remaining if @item
-    @days_remaining
+    @item.days_remaining
   end
 
   class Normal
-    attr_reader :name, :quality, :days_remaining
+    attr_reader :quality, :days_remaining
 
-    def initialize(name, quality, days_remaining)
-      @name = name
+    def initialize(quality, days_remaining)
       @quality = quality
       @days_remaining = days_remaining
     end
@@ -53,10 +48,9 @@ class GildedRose
   end
 
   class AgedBrie
-    attr_reader :name, :quality, :days_remaining
+    attr_reader :quality, :days_remaining
 
-    def initialize(name, quality, days_remaining)
-      @name = name
+    def initialize(quality, days_remaining)
       @quality = quality
       @days_remaining = days_remaining
     end
@@ -71,10 +65,9 @@ class GildedRose
   end
 
   class Sulfuras
-    attr_reader :name, :quality, :days_remaining
+    attr_reader :quality, :days_remaining
 
-    def initialize(name, quality, days_remaining)
-      @name = name
+    def initialize(quality, days_remaining)
       @quality = quality
       @days_remaining = days_remaining
     end
@@ -84,10 +77,9 @@ class GildedRose
   end
 
   class Backstage
-    attr_reader :name, :quality, :days_remaining
+    attr_reader :quality, :days_remaining
 
-    def initialize(name, quality, days_remaining)
-      @name = name
+    def initialize(quality, days_remaining)
       @quality = quality
       @days_remaining = days_remaining
     end
