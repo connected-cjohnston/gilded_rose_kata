@@ -161,7 +161,7 @@ describe '#update_quality' do
     end
 
     context "conjured item" do
-      before { pending }
+      before { skip 'yet to be implemented' }
       let(:name) { 'Conjured Mana Cake' }
 
       Invariant { item.days_remaining.to eq(initial_sell_in - 1) }
