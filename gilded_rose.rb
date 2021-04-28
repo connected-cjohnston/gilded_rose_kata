@@ -30,6 +30,16 @@ class AgedBrie < Item
   end
 end
 
+class Conjured < Item
+  def tick
+    @days_remaining -= 1
+    return if @quality <= 0
+
+    @quality -= 2
+    @quality -= 2 if @days_remaining <= 0
+  end
+end
+
 class Backstage < Item
   def tick
     @days_remaining -= 1
@@ -44,12 +54,11 @@ class Backstage < Item
 end
 
 class GildedRose
-  attr_reader :name, :quality, :days_remaining
-
   ITEMS = Hash.new(Item).tap { |h|
     h['NORMAL ITEM'] = Normal
     h['Aged Brie'] = AgedBrie
     h['Backstage passes to a TAFKAL80ETC concert'] = Backstage
+    h['Conjured Mana Cake'] = Conjured
   }
 
   def initialize(name, quality, days_remaining)

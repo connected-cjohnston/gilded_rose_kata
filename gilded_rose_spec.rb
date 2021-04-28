@@ -275,7 +275,6 @@ describe '#update_quality' do
     end
 
     context "conjured item" do
-      before { skip 'yet to be implemented' }
       let(:name) { 'Conjured Mana Cake' }
 
       context 'before the sell date' do
@@ -284,7 +283,7 @@ describe '#update_quality' do
           item = GildedRose.new(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality - 2)
-          item.days_remaining.to eq(days_remaining - 1)
+          expect(item.days_remaining).to eq(days_remaining - 1)
         }
 
         context 'at zero quality' do
@@ -293,7 +292,7 @@ describe '#update_quality' do
             item = GildedRose.new(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
-            item.days_remaining.to eq(days_remaining - 1)
+            expect(item.days_remaining).to eq(days_remaining - 1)
           }
         end
       end
@@ -304,7 +303,7 @@ describe '#update_quality' do
           item = GildedRose.new(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality - 4)
-          item.days_remaining.to eq(days_remaining - 1)
+          expect(item.days_remaining).to eq(days_remaining - 1)
         }
 
         context 'at zero quality' do
@@ -313,7 +312,7 @@ describe '#update_quality' do
             item = GildedRose.new(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
-            item.days_remaining.to eq(days_remaining - 1)
+            expect(item.days_remaining).to eq(days_remaining - 1)
           }
         end
       end
@@ -324,7 +323,7 @@ describe '#update_quality' do
           item = GildedRose.new(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality - 4)
-          item.days_remaining.to eq(days_remaining - 1)
+          expect(item.days_remaining).to eq(days_remaining - 1)
         }
 
         context 'at zero quality' do
@@ -333,7 +332,7 @@ describe '#update_quality' do
             item = GildedRose.new(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
-            item.days_remaining.to eq(days_remaining - 1)
+            expect(item.days_remaining).to eq(days_remaining - 1)
           }
         end
       end
