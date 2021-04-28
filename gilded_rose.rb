@@ -12,7 +12,7 @@ class GildedRose
     when 'Aged Brie'
       AgedBrie
     when 'Sulfuras, Hand of Ragnaros'
-      Sulfuras
+      Item
     when 'Backstage passes to a TAFKAL80ETC concert'
       Backstage
     end
@@ -37,6 +37,9 @@ class GildedRose
       @quality = quality
       @days_remaining = days_remaining
     end
+
+    def tick
+    end
   end
 
   class Normal < Item
@@ -56,11 +59,6 @@ class GildedRose
 
       @quality += 1
       @quality += 1 if @days_remaining <= 0 && @quality < 50
-    end
-  end
-
-  class Sulfuras < Item
-    def tick
     end
   end
 
