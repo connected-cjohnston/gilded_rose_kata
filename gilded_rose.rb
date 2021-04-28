@@ -61,19 +61,7 @@ class GildedRose
     h['Conjured Mana Cake'] = Conjured
   }
 
-  def initialize(name, quality, days_remaining)
-    @item = ITEMS[name].new(quality, days_remaining)
-  end
-
-  def tick
-    @item.tick
-  end
-
-  def quality
-    @item.quality
-  end
-
-  def days_remaining
-    @item.days_remaining
+  def self.item(name, quality, days_remaining)
+    ITEMS[name].new(quality, days_remaining)
   end
 end

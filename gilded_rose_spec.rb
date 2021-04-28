@@ -11,7 +11,7 @@ describe '#update_quality' do
 
       context "before sell date" do
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality - 1)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -21,7 +21,7 @@ describe '#update_quality' do
       context "on sell date" do
         let(:days_remaining) { 0 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality - 2)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -31,7 +31,7 @@ describe '#update_quality' do
       context "after sell date" do
         let(:days_remaining) { -10 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality - 2)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -41,7 +41,7 @@ describe '#update_quality' do
       context "of zero quality" do
         let(:initial_quality) { 0 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(0)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -54,7 +54,7 @@ describe '#update_quality' do
 
       context "before sell date" do
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality + 1)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -63,7 +63,7 @@ describe '#update_quality' do
         context "with max quality" do
           let(:initial_quality) { 50 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
             expect(item.days_remaining).to eq(days_remaining - 1)
@@ -74,7 +74,7 @@ describe '#update_quality' do
       context 'on sell date' do
         let(:days_remaining) { 0 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality + 2)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -83,7 +83,7 @@ describe '#update_quality' do
         context 'near max quality' do
           let(:initial_quality) { 49 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(50)
             expect(item.days_remaining).to eq(days_remaining - 1)
@@ -93,7 +93,7 @@ describe '#update_quality' do
         context 'with max quality' do
           let(:initial_quality) { 50 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
             expect(item.days_remaining).to eq(days_remaining - 1)
@@ -104,7 +104,7 @@ describe '#update_quality' do
       context 'after sell date' do
         let(:days_remaining) { -10 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality + 2)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -113,7 +113,7 @@ describe '#update_quality' do
         context 'with max quality' do
           let(:initial_quality) { 50 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
             expect(item.days_remaining).to eq(days_remaining - 1)
@@ -128,7 +128,7 @@ describe '#update_quality' do
 
       context 'before sell date' do
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality)
           expect(item.days_remaining).to eq(days_remaining)
@@ -138,7 +138,7 @@ describe '#update_quality' do
       context 'on sell date' do
         let(:days_remaining) { 0 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality)
           expect(item.days_remaining).to eq(days_remaining)
@@ -148,7 +148,7 @@ describe '#update_quality' do
       context 'after sell date' do
         let(:days_remaining) { -10 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality)
           expect(item.days_remaining).to eq(days_remaining)
@@ -162,7 +162,7 @@ describe '#update_quality' do
       context 'long before sell date' do
         let(:days_remaining) { 11 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality + 1)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -176,7 +176,7 @@ describe '#update_quality' do
       context 'medium close to sell date (upper bound)' do
         let(:days_remaining) { 10 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality + 2)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -185,7 +185,7 @@ describe '#update_quality' do
         context 'at max quality' do
           let(:initial_quality) { 50 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
             expect(item.days_remaining).to eq(days_remaining - 1)
@@ -196,7 +196,7 @@ describe '#update_quality' do
       context 'medium close to sell date (lower bound)' do
         let(:days_remaining) { 6 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality + 2)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -205,7 +205,7 @@ describe '#update_quality' do
         context 'at max quality' do
           let(:initial_quality) { 50 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
             expect(item.days_remaining).to eq(days_remaining - 1)
@@ -216,7 +216,7 @@ describe '#update_quality' do
       context 'very close to sell date (upper bound)' do
         let(:days_remaining) { 5 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality + 3)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -225,7 +225,7 @@ describe '#update_quality' do
         context 'at max quality' do
           let(:initial_quality) { 50 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
             expect(item.days_remaining).to eq(days_remaining - 1)
@@ -236,7 +236,7 @@ describe '#update_quality' do
       context 'very close to sell date (lower bound)' do
         let(:days_remaining) { 1 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality + 3)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -245,7 +245,7 @@ describe '#update_quality' do
         context 'at max quality' do
           let(:initial_quality) { 50 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
             expect(item.days_remaining).to eq(days_remaining - 1)
@@ -256,7 +256,7 @@ describe '#update_quality' do
       context 'on sell date' do
         let(:days_remaining) { 0 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(0)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -266,7 +266,7 @@ describe '#update_quality' do
       context 'after sell date' do
         let(:days_remaining) { -10 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(0)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -280,7 +280,7 @@ describe '#update_quality' do
       context 'before the sell date' do
         let(:days_remaining) { 5 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality - 2)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -289,7 +289,7 @@ describe '#update_quality' do
         context 'at zero quality' do
           let(:initial_quality) { 0 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
             expect(item.days_remaining).to eq(days_remaining - 1)
@@ -300,7 +300,7 @@ describe '#update_quality' do
       context 'on sell date' do
         let(:days_remaining) { 0 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality - 4)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -309,7 +309,7 @@ describe '#update_quality' do
         context 'at zero quality' do
           let(:initial_quality) { 0 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
             expect(item.days_remaining).to eq(days_remaining - 1)
@@ -320,7 +320,7 @@ describe '#update_quality' do
       context 'after sell date' do
         let(:days_remaining) { -10 }
         Then {
-          item = GildedRose.new(name, initial_quality, days_remaining)
+          item = GildedRose.item(name, initial_quality, days_remaining)
           item.tick
           expect(item.quality).to eq(initial_quality - 4)
           expect(item.days_remaining).to eq(days_remaining - 1)
@@ -329,7 +329,7 @@ describe '#update_quality' do
         context 'at zero quality' do
           let(:initial_quality) { 0 }
           Then {
-            item = GildedRose.new(name, initial_quality, days_remaining)
+            item = GildedRose.item(name, initial_quality, days_remaining)
             item.tick
             expect(item.quality).to eq(initial_quality)
             expect(item.days_remaining).to eq(days_remaining - 1)
