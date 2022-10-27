@@ -1,0 +1,33 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    diff-lcs (1.5.0)
+    given_core (3.8.2)
+      sorcerer (>= 0.3.7)
+    rspec (3.11.0)
+      rspec-core (~> 3.11.0)
+      rspec-expectations (~> 3.11.0)
+      rspec-mocks (~> 3.11.0)
+    rspec-core (3.11.0)
+      rspec-support (~> 3.11.0)
+    rspec-expectations (3.11.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.11.0)
+    rspec-given (3.8.2)
+      given_core (= 3.8.2)
+      rspec (>= 2.14.0)
+    rspec-mocks (3.11.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.11.0)
+    rspec-support (3.11.0)
+    sorcerer (2.0.1)
+
+PLATFORMS
+  arm64-darwin-21
+
+DEPENDENCIES
+  rspec
+  rspec-given
+
+BUNDLED WITH
+   2.3.7
