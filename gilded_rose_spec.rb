@@ -8,26 +8,26 @@ describe "#update_quality" do
     Given(:initial_quality) { 10 }
     Given(:item) { Item.new(name, initial_sell_in, initial_quality) }
 
-    When { update_quality([item]) }
+    When { GildedRose.new.update_quality([item]) }
 
     context "normal item" do
       Given(:name) { "NORMAL ITEM" }
 
       context "before sell date" do
-        Then { expect(item.quality.should).to eq(initial_quality - 1 ) }
-        Then { expect(item.sell_in.should).to eq(initial_sell_in - 1 ) }
+        Then { expect(item.quality).to eq(initial_quality - 1 ) }
+        Then { expect(item.sell_in).to eq(initial_sell_in - 1 ) }
       end
 
       context "on sell date" do
         Given(:initial_sell_in) { 0 }
-        Then { expect(item.quality.should).to eq(initial_quality - 2 ) }
-        Then { expect(item.sell_in.should).to eq(initial_sell_in - 1 ) }
+        Then { expect(item.quality).to eq(initial_quality - 2 ) }
+        Then { expect(item.sell_in).to eq(initial_sell_in - 1 ) }
       end
 
       context "after sell date" do
         Given(:initial_sell_in) { -10 }
-        Then { expect(item.quality.should).to eq(initial_quality - 2 ) }
-        Then { expect(item.sell_in.should).to eq(initial_sell_in - 1 ) }
+        Then { expect(item.quality).to eq(initial_quality - 2 ) }
+        Then { expect(item.sell_in).to eq(initial_sell_in - 1 ) }
       end
 
       context "of zero quality" do
@@ -215,7 +215,7 @@ describe "#update_quality" do
       ]
     }
 
-    When { update_quality(items) }
+    When { GildedRose.new.update_quality(items) }
 
     Then { expect(items[0].quality).to eq(9) }
     Then { expect(items[0].sell_in).to eq(4) }
