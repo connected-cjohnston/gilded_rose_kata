@@ -1,5 +1,5 @@
 require 'rspec/given'
-require 'gilded_rose'
+require './app/gilded_rose'
 
 describe "#update_quality" do
 
@@ -169,7 +169,7 @@ describe "#update_quality" do
     end
 
     context "conjured item" do
-      before { skip }
+      before { }
       Given(:name) { "Conjured Mana Cake" }
 
       context "before the sell date" do
