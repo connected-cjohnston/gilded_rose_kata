@@ -4,26 +4,13 @@ class GildedRose
   end
 
   def update(item)
-    if item.name == 'Aged Brie'
-      update_aged_brie(item)
-    elsif item.name == 'Sulfuras, Hand of Ragnaros'
+    if item.name == 'Sulfuras, Hand of Ragnaros'
       update_sulfuras(item)
     elsif item.name == 'Backstage passes to a TAFKAL80ETC concert'
       update_backstage_pass(item)
     else
       item.update
     end
-  end
-
-
-
-  def update_aged_brie(item)
-    item.sell_in -= 1
-
-    item.quality = 50 and return if item.quality == 50
-
-    item.quality += 1
-    item.quality += 1 if item.sell_in < 0
   end
 
   def update_sulfuras(item)
@@ -40,10 +27,7 @@ class GildedRose
     item.quality += 1 if item.sell_in < 10
     item.quality += 1 if item.sell_in < 5
   end
-
-
 end
-
 
 class Item
   attr_accessor :name, :sell_in, :quality
@@ -63,6 +47,8 @@ class Item
       NormalItem.new('NORMAL ITEM', sell_in, quality)
     elsif name == 'Conjured Mana Cake'
       ConjuredManaItem.new('Conjured Mana Cake', sell_in, quality)
+    elsif name == 'Aged Brie'
+      AgedBrie.new('Aged Brie', sell_in, quality)
     else
       Item.new(name, sell_in, quality)
     end
@@ -77,6 +63,17 @@ class NormalItem < Item
 
     @quality -= 1
     @quality -= 1 if @sell_in < 0
+  end
+end
+
+class AgedBrie < Item
+  def update
+    @sell_in -= 1
+
+    @quality = 50 and return if @quality == 50
+
+    @quality += 1
+    @quality += 1 if @sell_in < 0
   end
 end
 
