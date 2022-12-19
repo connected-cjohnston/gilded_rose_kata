@@ -59,6 +59,16 @@ class GildedRose
   end
 end
 
+class Item
+  attr_accessor :name, :sell_in, :quality
+
+  def initialize(name, sell_in, quality)
+    @name = name
+    @sell_in = sell_in
+    @quality = quality
+  end
+end
+
 # DO NOT CHANGE THINGS BELOW -----------------------------------------
 
-Item = Struct.new(:name, :sell_in, :quality)
+# Item = Struct.new(:name, :sell_in, :quality)
