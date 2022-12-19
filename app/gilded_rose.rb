@@ -1,17 +1,19 @@
 class GildedRose
   def update_quality(items)
-    items.each do |item|
-      if item.name == 'NORMAL ITEM'
-        handle_normal_item(item)
-      elsif item.name == 'Conjured Mana Cake'
-        handle_conjured_mana_item(item)
-      elsif item.name == 'Aged Brie'
-        handle_aged_brie(item)
-      elsif item.name == 'Sulfuras, Hand of Ragnaros'
-        handle_sulfuras(item)
-      elsif item.name == 'Backstage passes to a TAFKAL80ETC concert'
-        handle_backstage_pass(item)
-      end
+    items.each { |item| update(item) }
+  end
+
+  def update(item)
+    if item.name == 'NORMAL ITEM'
+      handle_normal_item(item)
+    elsif item.name == 'Conjured Mana Cake'
+      handle_conjured_mana_item(item)
+    elsif item.name == 'Aged Brie'
+      handle_aged_brie(item)
+    elsif item.name == 'Sulfuras, Hand of Ragnaros'
+      handle_sulfuras(item)
+    elsif item.name == 'Backstage passes to a TAFKAL80ETC concert'
+      handle_backstage_pass(item)
     end
   end
 
