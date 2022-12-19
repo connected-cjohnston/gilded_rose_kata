@@ -5,6 +5,8 @@ class GildedRose
         handle_normal_item(item)
       elsif item.name == 'Conjured Mana Cake'
         handle_conjured_mana_item(item)
+      elsif item.name == 'Aged Brie'
+        handle_aged_brie(item)
       else
         if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
           if item.quality > 0
@@ -60,6 +62,15 @@ class GildedRose
 
     item.quality -= 1
     item.quality -= 1 if item.sell_in < 0
+  end
+
+  def handle_aged_brie(item)
+    item.sell_in -= 1
+
+    item.quality = 50 and return if item.quality == 50
+
+    item.quality += 1
+    item.quality += 1 if item.sell_in < 0
   end
 
   def handle_conjured_mana_item(item)
