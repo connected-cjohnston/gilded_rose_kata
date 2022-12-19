@@ -4,17 +4,11 @@ class GildedRose
   end
 
   def update(item)
-    if item.name == 'Sulfuras, Hand of Ragnaros'
-      update_sulfuras(item)
-    elsif item.name == 'Backstage passes to a TAFKAL80ETC concert'
+    if item.name == 'Backstage passes to a TAFKAL80ETC concert'
       update_backstage_pass(item)
     else
       item.update
     end
-  end
-
-  def update_sulfuras(item)
-
   end
 
   def update_backstage_pass(item)
@@ -39,7 +33,6 @@ class Item
   end
 
   def update
-
   end
 
   def self.create(name, sell_in, quality)
@@ -49,6 +42,8 @@ class Item
       ConjuredManaItem.new('Conjured Mana Cake', sell_in, quality)
     elsif name == 'Aged Brie'
       AgedBrie.new('Aged Brie', sell_in, quality)
+    elsif name == 'Sulfuras, Hand of Ragnaros'
+      Item.new('Sulfuras, Hand of Ragnaros', sell_in, quality)
     else
       Item.new(name, sell_in, quality)
     end
