@@ -4,9 +4,7 @@ class GildedRose
   end
 
   def update(item)
-    if item.name == 'Conjured Mana Cake'
-      update_conjured_mana_item(item)
-    elsif item.name == 'Aged Brie'
+    if item.name == 'Aged Brie'
       update_aged_brie(item)
     elsif item.name == 'Sulfuras, Hand of Ragnaros'
       update_sulfuras(item)
@@ -43,15 +41,7 @@ class GildedRose
     item.quality += 1 if item.sell_in < 5
   end
 
-  def update_conjured_mana_item(item)
-    item.sell_in -= 1
 
-    item.quality = 0 and return if item.quality == 0
-
-    if item.sell_in != 0
-      item.quality -= 2
-    end
-  end
 end
 
 
@@ -71,6 +61,8 @@ class Item
   def self.create(name, sell_in, quality)
     if name == 'NORMAL ITEM'
       NormalItem.new('NORMAL ITEM', sell_in, quality)
+    elsif name == 'Conjured Mana Cake'
+      ConjuredManaItem.new('Conjured Mana Cake', sell_in, quality)
     else
       Item.new(name, sell_in, quality)
     end
@@ -85,6 +77,18 @@ class NormalItem < Item
 
     @quality -= 1
     @quality -= 1 if @sell_in < 0
+  end
+end
+
+class ConjuredManaItem < Item
+  def update
+    @sell_in -= 1
+
+    @quality = 0 and return if @quality == 0
+
+    if @sell_in != 0
+      @quality -= 2
+    end
   end
 end
 
