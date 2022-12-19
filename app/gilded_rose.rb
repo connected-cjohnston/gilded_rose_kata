@@ -1,10 +1,6 @@
 class GildedRose
   def update_quality(items)
-    items.each { |item| update(item) }
-  end
-
-  def update(item)
-    item.update
+    items.each { |item| item.update }
   end
 end
 
@@ -21,19 +17,13 @@ class Item
   end
 
   def self.create(name, sell_in, quality)
-    if name == 'NORMAL ITEM'
-      NormalItem.new('NORMAL ITEM', sell_in, quality)
-    elsif name == 'Conjured Mana Cake'
-      ConjuredManaItem.new('Conjured Mana Cake', sell_in, quality)
-    elsif name == 'Aged Brie'
-      AgedBrie.new('Aged Brie', sell_in, quality)
-    elsif name == 'Sulfuras, Hand of Ragnaros'
-      Item.new('Sulfuras, Hand of Ragnaros', sell_in, quality)
-    elsif name == 'Backstage passes to a TAFKAL80ETC concert'
-      BackstatePass.new('Backstage passes to a TAFKAL80ETC concert', sell_in, quality)
-    else
-      Item.new(name, sell_in, quality)
-    end
+    {
+      'NORMAL ITEM' => NormalItem.new('NORMAL ITEM', sell_in, quality),
+      'Conjured Mana Cake' => ConjuredManaItem.new('Conjured Mana Cake', sell_in, quality),
+      'Aged Brie' => AgedBrie.new('Aged Brie', sell_in, quality),
+      'Sulfuras, Hand of Ragnaros' => Item.new('Sulfuras, Hand of Ragnaros', sell_in, quality),
+      'Backstage passes to a TAFKAL80ETC concert' => BackstatePass.new('Backstage passes to a TAFKAL80ETC concert', sell_in, quality)
+    }[name]
   end
 end
 
