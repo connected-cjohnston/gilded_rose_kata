@@ -6,7 +6,7 @@ describe "#update_quality" do
   context "with a single" do
     Given(:initial_sell_in) { 5 }
     Given(:initial_quality) { 10 }
-    Given(:item) { Item.new(name, initial_sell_in, initial_quality) }
+    Given(:item) { Item.create(name, initial_sell_in, initial_quality) }
 
     When { GildedRose.new.update_quality([item]) }
 
@@ -210,8 +210,8 @@ describe "#update_quality" do
   context "with several objects" do
     Given(:items) {
       [
-        Item.new("NORMAL ITEM", 5, 10),
-        Item.new("Aged Brie", 3, 10),
+        Item.create("NORMAL ITEM", 5, 10),
+        Item.create("Aged Brie", 3, 10),
       ]
     }
 

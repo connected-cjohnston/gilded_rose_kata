@@ -61,6 +61,7 @@ class GildedRose
   end
 end
 
+
 class Item
   attr_accessor :name, :sell_in, :quality
 
@@ -69,7 +70,12 @@ class Item
     @sell_in = sell_in
     @quality = quality
   end
+
+  def self.create(name, sell_in, quality)
+    Item.new(name, sell_in, quality)
+  end
 end
+
 
 # DO NOT CHANGE THINGS BELOW -----------------------------------------
 
