@@ -9,6 +9,8 @@ class GildedRose
         handle_aged_brie(item)
       elsif item.name == 'Sulfuras, Hand of Ragnaros'
         handle_sulfuras(item)
+      elsif item.name == 'Backstage passes to a TAFKAL80ETC concert'
+        handle_backstage_pass(item)
       else
         if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
           if item.quality > 0
@@ -77,6 +79,17 @@ class GildedRose
 
   def handle_sulfuras(item)
 
+  end
+
+  def handle_backstage_pass(item)
+    item.sell_in -= 1
+
+    item.quality = 50 and return if item.quality == 50
+    item.quality = 0 and return if item.sell_in < 0
+
+    item.quality += 1
+    item.quality += 1 if item.sell_in < 10
+    item.quality += 1 if item.sell_in < 5
   end
 
   def handle_conjured_mana_item(item)
