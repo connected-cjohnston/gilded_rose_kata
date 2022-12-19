@@ -5,19 +5,19 @@ class GildedRose
 
   def update(item)
     if item.name == 'NORMAL ITEM'
-      handle_normal_item(item)
+      update_normal_item(item)
     elsif item.name == 'Conjured Mana Cake'
-      handle_conjured_mana_item(item)
+      update_conjured_mana_item(item)
     elsif item.name == 'Aged Brie'
-      handle_aged_brie(item)
+      update_aged_brie(item)
     elsif item.name == 'Sulfuras, Hand of Ragnaros'
-      handle_sulfuras(item)
+      update_sulfuras(item)
     elsif item.name == 'Backstage passes to a TAFKAL80ETC concert'
-      handle_backstage_pass(item)
+      update_backstage_pass(item)
     end
   end
 
-  def handle_normal_item(item)
+  def update_normal_item(item)
     item.sell_in -= 1
 
     item.quality = 0 and return if item.quality == 0
@@ -26,7 +26,7 @@ class GildedRose
     item.quality -= 1 if item.sell_in < 0
   end
 
-  def handle_aged_brie(item)
+  def update_aged_brie(item)
     item.sell_in -= 1
 
     item.quality = 50 and return if item.quality == 50
@@ -35,11 +35,11 @@ class GildedRose
     item.quality += 1 if item.sell_in < 0
   end
 
-  def handle_sulfuras(item)
+  def update_sulfuras(item)
 
   end
 
-  def handle_backstage_pass(item)
+  def update_backstage_pass(item)
     item.sell_in -= 1
 
     item.quality = 50 and return if item.quality == 50
@@ -50,7 +50,7 @@ class GildedRose
     item.quality += 1 if item.sell_in < 5
   end
 
-  def handle_conjured_mana_item(item)
+  def update_conjured_mana_item(item)
     item.sell_in -= 1
 
     item.quality = 0 and return if item.quality == 0
