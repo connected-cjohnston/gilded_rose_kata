@@ -161,10 +161,9 @@ describe '#update_quality' do
     end
 
     context "conjured item" do
-      before { skip }
       let(:name) { 'Conjured Mana Cake' }
 
-      Invariant { item.days_remaining.to eq(initial_sell_in - 1) }
+      Invariant { expect(item.days_remaining).to eq(initial_sell_in - 1) }
 
       context 'before the sell date' do
         let(:initial_sell_in) { 5 }
